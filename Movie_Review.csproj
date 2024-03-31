@@ -253,6 +253,7 @@
     <Content Include="Content\themes\fonts\FontAwesome.otf" />
     <Content Include="Content\themes\fonts\Agrandir-WideBlackItalic.otf" />
     <Content Include="Content\themes\fonts\Lobster-Regular.ttf" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Pages\Single.aspx" />
     <Content Include="Scripts\app.js" />
