@@ -1,0 +1,141 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Movie_Review.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head runat="server">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+
+		<title><%: Page.Title %> - Movie Review</title>
+		<asp:PlaceHolder runat="server">     
+			<%: Scripts.Render("~/bundles/modernizr") %>
+		</asp:PlaceHolder>
+		<webopt:BundleReference runat="server" Path="~/Content/css" /> 
+		<link href="Images/logo.ico" rel="icon" type="image/x-icon" />
+		<asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+	</head>
+<body>
+    <form id="MainForm" runat="server" class="wrapper">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <%--Framework Scripts--%>
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" Path="~/Scripts/jquery-1.11.1.min.js"/>
+            <asp:ScriptReference Name="jquery.ui.combined" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
+            <%--Site Scripts--%>
+            <asp:ScriptReference Path="~/Scripts/plugins.js" />
+            <asp:ScriptReference Path="~/Scripts/app.js" />
+            <asp:ScriptReference Path="~/Scripts/modified.js" />
+        </Scripts>
+    </asp:ScriptManager>
+    <div id="site-content">
+        <header class="site-header">
+            <div class="container">
+                <a runat="server" href="~/" id="branding">
+				    <img runat="server" src="~/Images/logo.png" alt="" class="logo">
+				    <div class="logo-copy">
+					    <h1 class="site-title">Flick Fusion</h1>
+					    <small class="site-description">Where Movies Meet Their Critics</small>
+				    </div>
+			    </a> <!-- #branding -->
+                
+                <div class="main-navigation">
+                    <ul id="navMenu" runat="server">
+                        <li class="menu-item" id="home"><a runat="server" href="~/">Home</a></li>
+					    <li class="menu-item" id="about"><a runat="server" href="~/Pages/About.aspx">About</a></li>
+					    <li class="menu-item" id="review"><a runat="server" href="~/Pages/Review.aspx">Movie reviews</a></li>
+					    <% if (Session["username"] != null) { %>
+                            <li class="menu-item" id="profile"><a runat="server" href="~/Account/Profile.aspx">Profile</a></li>
+                            <li class="menu-item" id="logout"><asp:LinkButton runat="server" OnClick="Logout" OnClientClick="return validate_logout()">Logout</asp:LinkButton></li>
+                        <% } else { %>
+					        <li class="menu-item" id="contact"><a id="A1" runat="server" href="~/Pages/Contact.aspx">Contact</a></li>
+                            <li class="menu-item" id="join"><a runat="server" href="~/Account/Login.aspx">Login</a></li>
+                        <% } %>
+                    </ul> <!-- Menu -->
+				    </div> <!-- .main-navigation -->
+				    <div class="mobile-navigation"></div>
+            </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <div runat="server" id="headerMsg"/>
+                <main class="main-content">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </main>
+        </div>
+	    <footer class="site-footer">
+		    <div class="container">
+			    <div class="row">
+				    <div class="col-md-2">
+					    <div class="widget">
+						    <h3 class="widget-title">About Us</h3>
+						    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>
+					    </div>
+				    </div>
+				    <div class="col-md-2">
+					    <div class="widget">
+						    <h3 class="widget-title">Recent Review</h3>
+						    <ul class="no-bullet">
+							    <li><a href="#">Lorem ipsum dolor</a></li>
+							    <li><a href="#">Sit amet consecture</a></li>
+							    <li><a href="#">Dolorem respequem</a></li>
+							    <li><a href="#">Invenore veritae</a></li>
+						    </ul>
+					    </div>
+				    </div>
+				    <div class="col-md-2">
+					    <div class="widget">
+						    <h3 class="widget-title">Help Center</h3>
+						    <ul class="no-bullet">
+							    <li><a href="#">Lorem ipsum dolor</a></li>
+							    <li><a href="#">Sit amet consecture</a></li>
+							    <li><a href="#">Dolorem respequem</a></li>
+							    <li><a href="#">Invenore veritae</a></li>
+						    </ul>
+					    </div>
+				    </div>
+				    <div class="col-md-2">
+					    <div class="widget">
+						    <h3 class="widget-title">Join Us</h3>
+						    <ul class="no-bullet">
+							    <li><a href="#">Lorem ipsum dolor</a></li>
+							    <li><a href="#">Sit amet consecture</a></li>
+							    <li><a href="#">Dolorem respequem</a></li>
+							    <li><a href="#">Invenore veritae</a></li>
+						    </ul>
+					    </div>
+				    </div>
+				    <div class="col-md-2">
+					    <div class="widget">
+						    <h3 class="widget-title">Social Media</h3>
+						    <ul class="no-bullet">
+							    <li><a href="#">Facebook</a></li>
+							    <li><a href="#">Twitter</a></li>
+							    <li><a href="#">Google+</a></li>
+							    <li><a href="#">Pinterest</a></li>
+						    </ul>
+					    </div>
+				    </div>
+			    </div> <!-- .row -->
+
+			    <div class="colophon">Copyright 2014 Flick Fusion, Designed by Themezy. All rights reserved</div>
+		    </div> <!-- .container -->
+	    </footer>
+        </div>
+    </form>
+</body>
+</html>
