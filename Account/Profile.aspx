@@ -20,7 +20,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container" style="padding: 10px!important;">
         <div class="bigBarContainer">
-            <div class="barTitle" id="headerContainer" visible="false" style="color: #080000">
+            <div class="barTitle" runat="server" ClientIDMode="static" id="headerContainer" visible="false" style="color: #080000">
                 <asp:Label runat="server" ClientIDMode="static" ID="headerMsg"></asp:Label>
             </div>
             <div class="barTitle">

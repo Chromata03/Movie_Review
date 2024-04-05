@@ -9,8 +9,8 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container" style="padding: 10px!important;">
         <div class="bigBarContainer">
-            <div class="barTitle" runat="server" id="headerContainer" visible="true" style="color: #080000">
-                <asp:Label runat="server" ID="headerMsg"></asp:Label>
+            <div class="barTitle" runat="server" ClientIDMode="static" id="headerContainer" visible="true" style="color: #080000">
+                <asp:Label runat="server" ClientIDMode="static" ID="headerMsg"></asp:Label>
             </div>
             <div class="barTitle" style="margin-bottom: 34px;">
                 <h1>flick fusion login</h1>

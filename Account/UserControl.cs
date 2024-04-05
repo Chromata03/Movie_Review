@@ -13,7 +13,7 @@ using System.Web.UI.HtmlControls;
 namespace Movie_Review.Account {
     public class UserControl {
 
-        protected byte[] salt;
+        private byte[] salt;
         private string message;
 
 
@@ -105,10 +105,11 @@ namespace Movie_Review.Account {
             return userDetails;
         }
 
-        public void UpdateTable(SqlConnection connection, string table, int userId, Dictionary<string, object> param) {
+        public int UpdateTable(SqlConnection connection, string table, int userId, Dictionary<string, object> param) {
             string[] keys = param.Keys.ToArray();
             string[] items = param.Values.Select(value => value.ToString()).ToArray();
             string data = "";
+            int result = -1;
 
             for (int i = 0; i < keys.Length; i++) {
                 data += keys[i] + " = @" + keys[i];
@@ -124,8 +125,9 @@ namespace Movie_Review.Account {
                 foreach (var kvp in param) {
                     command.Parameters.AddWithValue("@" + kvp.Key, kvp.Value);
                 }
-                command.ExecuteNonQuery();
+                result = command.ExecuteNonQuery();
             }
+            return result;
         }
         // Modifier
         private string ComputeHash(string input) {
@@ -135,11 +137,12 @@ namespace Movie_Review.Account {
             }
         }
 
-        private string GenerateHash(string password) {
+        public string GenerateHash(string password) {
             salt = GenerateSalt();
             return ComputeHash(password);
         }
-        private string GenerateHash(string password, byte[] salt) {
+
+        public string GenerateHash(string password, byte[] salt) {
             this.salt = salt;
             return ComputeHash(password);
         }
@@ -171,8 +174,8 @@ namespace Movie_Review.Account {
                 }
 
                 using (StreamWriter writer = File.AppendText(errorPath)) {
-                    writer.WriteLineAsync(DateTime.Now + " " + message);
                     writer.WriteLine();
+                    writer.WriteLineAsync(DateTime.Now + " " + message);
                 }
             }
             catch (Exception e) {
@@ -181,5 +184,6 @@ namespace Movie_Review.Account {
             }
         }
 
+        public byte[] Salt { get { return salt; } }
     }
 }

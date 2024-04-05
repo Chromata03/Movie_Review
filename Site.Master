@@ -72,7 +72,6 @@
         </header>
         <div id="body">
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
-            <div runat="server" id="headerMsg"/>
                 <main class="main-content">
                     <asp:ContentPlaceHolder runat="server" ID="MainContent" />
                 </main>

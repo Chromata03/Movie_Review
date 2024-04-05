@@ -50,7 +50,6 @@ function hideCheck() {
 function validateMatch(event) {
     var confirmPassword = event.target.value;
     var password = document.getElementById(passwordFieldId).value;
-    console.log(confirmPassword + " " + password);
     try {
         // Matching Check
         document.getElementById('matchMsgContainer').style.display = 'block';
@@ -85,16 +84,20 @@ $(document).ready(function() {
     $('#saveUpdate').click(function (event) {
         if ($('#updatePass').css("display") == "block") {
             changePassword();
-            event.preventDefault();
+
+        }
+        else if ($('#updateInfo').css("display") == "block") {
+            changeDetails();
         }
     });
 });
 
 function changePassword() {
+    event.preventDefault();
     var dataToSave = {
-        currentPassword: $('#' + curPassFld).val(),
-        newPassword: $('#' + passwordFieldId).val(),
-        confirmPassword: $('#' + conNewPassFld).val()
+        curPass: $('#' + curPassFld).val(),
+        newPass: $('#' + passwordFieldId).val(),
+        conPass: $('#' + conNewPassFld).val()
     };
 
     $.ajax({
@@ -104,14 +107,40 @@ function changePassword() {
         data: JSON.stringify(dataToSave),
         dataType: "json",
         success: function (response) {
-            $('#btnLogout').click();
-        },
-        error: function (xhr, status, error) {
             var responseData = JSON.parse(response.d);
             if (responseData.success) {
-                $('#headerContainer').prop("visible", true);
-                $('#headerMsg').text(responseData.message);
+                console.log("Success!");
+                window.location.href = "Login.aspx";
             }
+            $('#headerContainer').attr("visible", "true");
+            $('#headerMsg').text(responseData.message);
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+function changeDetails() {
+    event.preventDefault();
+    var dataToSave = {
+        name: $('#' + changeDNameFld).val(),
+        email: $('#' + changeEmailFld).val()
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "Profile.aspx/changeDetails",
+        data: JSON.stringify(dataToSave),
+        dataType: "json",
+        success: function (response) {
+            var responseData = JSON.parse(response.d);
+            $('#headerContainer').attr("visible", "true");
+            $('#headerMsg').text(responseData.message);
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
         }
     });
 }
