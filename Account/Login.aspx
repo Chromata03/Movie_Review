@@ -35,7 +35,4 @@
             </div>
         </div>
     </div>
-    <!-- 
-     style="padding-left: 67.2px; padding-top: 13.3px;"    
--->
 </asp:Content>

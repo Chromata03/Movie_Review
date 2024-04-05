@@ -253,7 +253,6 @@
     <Content Include="Content\themes\fonts\FontAwesome.otf" />
     <Content Include="Content\themes\fonts\Agrandir-WideBlackItalic.otf" />
     <Content Include="Content\themes\fonts\Lobster-Regular.ttf" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Pages\Single.aspx" />
     <Content Include="Scripts\app.js" />
@@ -290,7 +289,9 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +370,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>

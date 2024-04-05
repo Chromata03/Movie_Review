@@ -47,19 +47,6 @@ function hideCheck() {
     $('#matchMsgContainer').hide();
 }
 
-$(document).ready(function() {
-    $('#btnUpdateInfo').click(function (event) {
-        $("#userUpdates").toggle();
-        $("#updateInfo").toggle();
-    });
-});
-
-$(document).ready(function () {
-    $('#btnUpdatePass').click(function (event) {
-        $("#updatePass").toggle();
-    });
-});
-
 function validateMatch(event) {
     var confirmPassword = event.target.value;
     var password = document.getElementById(passwordFieldId).value;
@@ -75,4 +62,56 @@ function validateMatch(event) {
         }
     } catch (e) {
     }
+}
+
+
+$(document).ready(function() {
+    $('#btnUpdateInfo').click(function(event) {
+        $("#updateInfoContainer, #updateInfo").toggle();
+        $(" #updateInfo").css("display", "block");
+        $("#updatePass").hide();
+        $("#btnUpdatePass").prop("disabled", !$("#btnUpdatePass").prop("disabled")); //disable other button
+    });
+
+    $('#btnUpdatePass').click(function(event) {
+        $("#updateInfoContainer, #updatePass").toggle();
+        $(" #updatePass").css("display", "block");
+        $("#updateInfo").hide();
+        $("#btnUpdateInfo").prop("disabled", !$("#btnUpdateInfo").prop("disabled")); //disable other button
+    });
+});
+
+$(document).ready(function() {
+    $('#saveUpdate').click(function (event) {
+        if ($('#updatePass').css("display") == "block") {
+            changePassword();
+            event.preventDefault();
+        }
+    });
+});
+
+function changePassword() {
+    var dataToSave = {
+        currentPassword: $('#' + curPassFld).val(),
+        newPassword: $('#' + passwordFieldId).val(),
+        confirmPassword: $('#' + conNewPassFld).val()
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "Profile.aspx/changePassword",
+        data: JSON.stringify(dataToSave),
+        dataType: "json",
+        success: function (response) {
+            $('#btnLogout').click();
+        },
+        error: function (xhr, status, error) {
+            var responseData = JSON.parse(response.d);
+            if (responseData.success) {
+                $('#headerContainer').prop("visible", true);
+                $('#headerMsg').text(responseData.message);
+            }
+        }
+    });
 }

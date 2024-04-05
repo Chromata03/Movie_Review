@@ -1854,10 +1854,12 @@ html {
     flex-direction: column;
     min-height: 100%; /* Ensure wrapper covers entire viewport */
 }
-.userinfo {
+.userInfo {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    border: 3px solid red;
+    padding:10px;
 }
 .col-ui {
     position: relative;
@@ -1875,11 +1877,17 @@ html {
     padding-top:5px;
     padding-bottom:2px;
 }
-#updateInfo, #updatePass, #userUpdates {
+#updateInfoContainer, #updatePass, #updateInfo {
     display: none;
+    margin-top: 10px;
+}
+#updateInfoContainer {
+    width: auto;
+    background: transparent!important;
+    padding-top:0px!important;
+    border: solid 2px;
 }
 #updateInfo {
-    border: 3px solid red;
     padding: 6px;
     margin: 7.5px;
 }
@@ -1887,4 +1895,9 @@ html {
     padding-left: 10px;
 }
 .redirect button {
+}
+
+#btnUpdatePass[disabled], #btnUpdateInfo[disabled] {
+    background-color: #ffc06f!important;
+    color: #D6DAC8;
 }

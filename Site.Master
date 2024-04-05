@@ -60,7 +60,7 @@
 					    <li class="menu-item" id="review"><a runat="server" href="~/Pages/Review.aspx">Movie reviews</a></li>
 					    <% if (Session["username"] != null) { %>
                             <li class="menu-item" id="profile"><a runat="server" href="~/Account/Profile.aspx">Profile</a></li>
-                            <li class="menu-item" id="logout"><asp:LinkButton runat="server" OnClick="Logout" OnClientClick="return validate_logout()">Logout</asp:LinkButton></li>
+                            <li class="menu-item" id="logout"><asp:LinkButton ID="btnLogout" ClientIDMode="Static" runat="server" OnClick="Logout" OnClientClick="return validate_logout()">Logout</asp:LinkButton></li>
                         <% } else { %>
 					        <li class="menu-item" id="contact"><a id="A1" runat="server" href="~/Pages/Contact.aspx">Contact</a></li>
                             <li class="menu-item" id="join"><a runat="server" href="~/Account/Login.aspx">Login</a></li>

@@ -13,6 +13,15 @@ namespace Movie_Review.Account {
     public partial class Profile {
         
         /// <summary>
+        /// headerMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label headerMsg;
+        
+        /// <summary>
         /// userPanel control.
         /// </summary>
         /// <remarks>
@@ -182,14 +191,5 @@ namespace Movie_Review.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator cpassRequiredValidator;
-        
-        /// <summary>
-        /// saveUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton saveUpdate;
     }
 }

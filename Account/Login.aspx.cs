@@ -27,7 +27,7 @@ namespace Movie_Review.Account
                 Session.Remove("message");
             }
         }
-        // login.aspx.cs
+
         protected void btnSubmit_Click(object sender, ImageClickEventArgs e) {
             string username = usernameField.Text.Trim();
             string password = passwordField.Text;

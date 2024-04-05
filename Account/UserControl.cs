@@ -96,6 +96,7 @@ namespace Movie_Review.Account {
             Dictionary<string, object> userDetails = new Dictionary<string, object>();
 
             if (dataReader.Read()) {
+                userDetails.Add("id", userId);
                 userDetails.Add("name", dataReader["name"].ToString());
                 userDetails.Add("email", dataReader["email"].ToString());
                 userDetails.Add("username", username);
@@ -171,6 +172,7 @@ namespace Movie_Review.Account {
 
                 using (StreamWriter writer = File.AppendText(errorPath)) {
                     writer.WriteLineAsync(DateTime.Now + " " + message);
+                    writer.WriteLine();
                 }
             }
             catch (Exception e) {
