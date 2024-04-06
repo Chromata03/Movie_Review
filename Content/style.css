@@ -1901,3 +1901,66 @@ html {
     background-color: #ffc06f!important;
     color: #D6DAC8;
 }
+
+/*Handling of Content*/
+.entry-content::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+    margin: 10px;
+    padding: 10px;
+}
+/* Handle */
+.entry-content::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+    border-radius: 5px; /* Rounded corners of the scrollbar handle */
+}
+
+/* Handle on hover */
+.entry-content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+}
+.entry-content {
+    padding: 5px 2px;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow-y: hidden; /* Initially hidden */
+    text-align: justify;
+    padding-right:10px;
+}
+.entry-content.expanded {
+    overflow-y: auto; /* Show content when expanded */
+}
+.entry-container {
+    overflow:hidden;
+    width: auto;
+    height: 15rem;
+    position:relative;
+}
+#showButton {
+    position: absolute;
+    bottom: 0px;
+    right: 3px;
+    background: black;
+    padding: 1px 3px;
+    border-radius: 10px;
+    color:white!important;
+}
+#commentInput {
+    height: 3.2rem;
+    width: 69.4rem;
+}
+#submit-comment {
+    width: auto;
+    height: auto;
+    text-align: center;
+    line-height: normal;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    margin: 0 auto;
+    text-decoration: underline;
+    box-shadow: none;
+    background: transparent!important;
+}
+.comment-section {
+    margin-top: 11px;
+}

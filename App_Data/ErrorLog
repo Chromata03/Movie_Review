@@ -4,3 +4,29 @@
 4/5/2024 11:30:41 PM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\Account\Profile.aspx.cs:line 119
 
 4/5/2024 11:30:45 PM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\Account\Profile.aspx.cs:line 119
+
+4/7/2024 4:51:09 AM Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=28766; handshake=212; :    at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Movie_Review.Account.Login.btnSubmit_Click(Object sender, ImageClickEventArgs e) in c:\Users\xx947\Downloads\Movie_Review-main\Account
+4/7/2024 6:24:59 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 120
+
+4/7/2024 6:25:06 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 120
+
+4/7/2024 6:27:32 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 120
+
+4/7/2024 6:27:54 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 120
+
+4/7/2024 6:30:56 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 120
+
+4/7/2024 6:40:48 AM Exception of type 'System.Exception' was thrown.:    at Movie_Review.Account.Profile.changePassword(String curPass, String newPass, String conPass) in c:\Users\xx947\Downloads\Movie_Review-main\Account\Profile.aspx.cs:line 128

@@ -7,12 +7,13 @@
         }
     </style>
     <script>
+        var currentName = '<%= displayNameVal.ClientID %>';
+        var currentEmail = '<%= emailVal.ClientID %>';
         var changeDNameFld = '<%= changeDNameFld.ClientID %>';
         var changeEmailFld = '<%= changeEmailFld.ClientID %>';
         var curPassFld = '<%= curPassFld.ClientID %>';
         var passwordFieldId = '<%= newPassFld.ClientID %>';
         var conNewPassFld = '<%= conNewPassFld.ClientID %>';
-        var userID = '<%= Session["id"] %>';
     </script>
 
 </asp:Content>
@@ -20,7 +21,7 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div class="container" style="padding: 10px!important;">
         <div class="bigBarContainer">
-            <div class="barTitle" runat="server" ClientIDMode="static" id="headerContainer" visible="false" style="color: #080000">
+            <div class="barTitle" id="headerContainer" visible="false" style="color: #080000">
                 <asp:Label runat="server" ClientIDMode="static" ID="headerMsg"></asp:Label>
             </div>
             <div class="barTitle">
@@ -48,13 +49,17 @@
                 
                 <div id="updateInfoContainer" class="container"><!-- Changing Details -->
                     <div id="updateInfo" class="userInfo">
+                        <div class="btnControl">
+                            <button id="changeName" class="btnRegisterUpdate">Change Name</button>
+                            <button id="changeEmail" class="btnRegisterUpdate">Change Email</button>
+                        </div>
                             <div class="col-ui">
                                 <asp:Label ID="dNameLbl" runat="server" CssClass="lblSignUp" Text="Display Name: " />
-                                <asp:TextBox ID="changeDNameFld" runat="server" CssClass="txtSignUp" Placeholder="New Display Name" />
+                                <asp:TextBox ID="changeDNameFld" runat="server" CssClass="txtSignUp" Placeholder="New Display Name" disabled="true"/>
                             </div>
                             <div class="col-ui">
                                 <asp:Label ID="emailLbl" runat="server" CssClass="lblSignUp" Text="Email: " />
-                                <asp:TextBox ID="changeEmailFld" runat="server" CssClass="txtSignUp" Placeholder="New Email" />
+                                <asp:TextBox ID="changeEmailFld" runat="server" CssClass="txtSignUp" Placeholder="New Email" disabled="true"/>
                             </div>
                     </div>
                     

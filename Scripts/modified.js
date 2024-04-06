@@ -84,16 +84,34 @@ $(document).ready(function() {
     $('#saveUpdate').click(function (event) {
         if ($('#updatePass').css("display") == "block") {
             changePassword();
-
+            return;
         }
-        else if ($('#updateInfo').css("display") == "block") {
-            changeDetails();
+        if ($('#updateInfo').css("display") == "block") {
+            var data = {};
+
+            $('#changeName').click(function (event) {
+                changeDNameFld.prop("disabled", "false");
+            });
+            $('#changeEmail').click(function (event) {
+                changeEmailFld.prop("disabled", "false");
+            });
+
+            if ($('#' + changeDNameFld).val() !== '') {
+                data.name = $('#' + changeDNameFld).val();
+            }
+            if ($('#' + changeEmailFld).val() !== '') {
+                data.email = $('#' + changeEmailFld).val();
+            }
+
+            changeDetails(data);
+            return;
         }
     });
 });
 
 function changePassword() {
     event.preventDefault();
+
     var dataToSave = {
         curPass: $('#' + curPassFld).val(),
         newPass: $('#' + passwordFieldId).val(),
@@ -112,8 +130,10 @@ function changePassword() {
                 console.log("Success!");
                 window.location.href = "Login.aspx";
             }
-            $('#headerContainer').attr("visible", "true");
-            $('#headerMsg').text(responseData.message);
+            else {
+                $('#headerContainer').attr("visible", "true");
+                $('#headerMsg').text(responseData.message);
+            }
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -121,12 +141,10 @@ function changePassword() {
     });
 }
 
-function changeDetails() {
+function changeDetails(data) {
     event.preventDefault();
-    var dataToSave = {
-        name: $('#' + changeDNameFld).val(),
-        email: $('#' + changeEmailFld).val()
-    };
+
+    var dataToSave = data;
 
     $.ajax({
         type: "POST",
@@ -144,3 +162,40 @@ function changeDetails() {
         }
     });
 }
+
+$(document).ready(function () {
+    $("#showButton").click(function () {
+        var entryContent = $('#entry-content');
+
+        // Toggle class to handle content visibility
+        entryContent.toggleClass('expanded');
+
+        // Update button text based on content visibility
+        if (entryContent.hasClass('expanded')) {
+            $(this).text('Show Less');
+        } else {
+            $(this).text('Show More');
+            entryContent.scrollTop(0);
+        }
+
+    });
+});
+
+//Handling of Comments
+$(document).ready(function () {
+    $('#submit-comment').submit(function (event) {
+        event.preventDefault();
+
+        // Get the value from the comment input
+        var commentText = $('#commentInput').val();
+
+        // Create a new comment element
+        var newComment = $('<div class="comment"></div>').text(commentText);
+
+        // Append the new comment to the comments container
+        $('.comments').append(newComment);
+
+        // Clear the comment input
+        $('#commentInput').val('');
+    });
+});

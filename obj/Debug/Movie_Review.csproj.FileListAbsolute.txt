@@ -1,3 +1,10 @@
+C:\Users\xx947\Downloads\Movie_Review-main\bin\Movie_Review.dll
+C:\Users\xx947\Downloads\Movie_Review-main\bin\Movie_Review.pdb
+C:\Users\xx947\Downloads\Movie_Review-main\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\xx947\Downloads\Movie_Review-main\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\xx947\Downloads\Movie_Review-main\obj\Debug\Movie_Review.dll
+C:\Users\xx947\Downloads\Movie_Review-main\obj\Debug\Movie_Review.pdb
+C:\Users\xx947\Downloads\Movie_Review-main\obj\Debug\Movie_Review.csprojResolveAssemblyReference.cache
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\Movie_Review.dll
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\Movie_Review.pdb
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\Antlr3.Runtime.dll
@@ -25,5 +32,6 @@ C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\DotNetOpenAuth.OpenId.xml
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\obj\Debug\Movie_Review.csprojResolveAssemblyReference.cache
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\obj\Debug\Movie_Review.dll
 C:\Users\cajes\OneDrive\Documents\Visual Studio 2012\Projects\Movie_Review\Movie_Review\obj\Debug\Movie_Review.pdb

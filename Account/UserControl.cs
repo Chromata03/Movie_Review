@@ -54,7 +54,7 @@ namespace Movie_Review.Account {
 
             using (SqlCommand insertUserInfoCommand = new SqlCommand(insertUserInfoQuery, connection, transaction)) {
                 insertUserInfoCommand.Parameters.AddWithValue("@UserId", userId);
-                insertUserInfoCommand.Parameters.AddWithValue("@Name", name);
+                insertUserInfoCommand.Parameters.AddWithValue("@Name", name.ToLower());
                 insertUserInfoCommand.Parameters.AddWithValue("@Email", email);
                 insertUserInfoCommand.Parameters.AddWithValue("@Logged", DateTime.Now);
 

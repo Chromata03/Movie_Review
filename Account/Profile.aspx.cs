@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,9 +22,10 @@ namespace Movie_Review.Account {
             if (!(Session["username"] != null)) {
                 Response.Redirect("~/");
             }
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
-            displayNameVal.Text = Session["name"].ToString();
-            usernameVal.Text = Session["username"].ToString();
+            changeDNameFld.Text = displayNameVal.Text = textInfo.ToTitleCase(Session["name"].ToString());
+            changeEmailFld.Text = usernameVal.Text = Session["username"].ToString();
             emailVal.Text = Session["email"].ToString();
 
             newPassFld.Attributes["onkeyup"] = "complexity(event);";
@@ -44,17 +46,17 @@ namespace Movie_Review.Account {
 
         private static ValidationCase ValidateInput(string name, string email, string password, string confirmPassword) {
             if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(confirmPassword)) {
-                if (name.Length < 5)
-                    return ValidationCase.NameLength;
+                string regex = @"(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?])[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?]{8,}$";
+                bool isMatch = Regex.IsMatch(password, regex);
+                if (!isMatch)
+                    return ValidationCase.PasswordComplexity;
 
                 if (!password.Equals(confirmPassword))
                     return ValidationCase.PasswordMatch;
             }
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(email)) {
-                string regex = @"(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?])[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?]{8,}$";
-                bool isMatch = Regex.IsMatch(password, regex);
-                if (!isMatch)
-                    return ValidationCase.PasswordComplexity;
+                if (name.Length < 5)
+                    return ValidationCase.NameLength;
 
                 string emailRegEx = @"(^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
                 bool emailIsMatch = Regex.IsMatch(email, emailRegEx);
@@ -64,23 +66,32 @@ namespace Movie_Review.Account {
             return ValidationCase.Success;
         }
 
+        private static string validateData(string name, string email, string password, string confirmPassword) {
+            ValidationCase validationResult = ValidateInput(name, email, password, confirmPassword);
+
+            switch (validationResult) {
+                case ValidationCase.NameLength:
+                    return "Name should be atleast 5 characters!";
+                case ValidationCase.PasswordMatch:
+                    return "New Password does not match!";
+                case ValidationCase.PasswordComplexity:
+                    return "Password does not meet the complexity requirements.";
+                case ValidationCase.EmailComplexity:
+                    return "Invalid Email Address!";
+                case ValidationCase.Success:
+                    break;
+            }
+            return "";
+        }
+
         [WebMethod]
         public static string changePassword(string curPass, string newPass, string conPass) {
             string message = "";
             UserControl uc = new UserControl();
 
-            ValidationCase validationResult = ValidateInput("", "", newPass, conPass);
-            switch (validationResult) {
-                case ValidationCase.PasswordMatch:
-                    message = "New Password does not match.";
-                    return Message(false, message);
-                case ValidationCase.PasswordComplexity:
-                    message = "Password does not meet the complexity requirements.";
-                    return Message(false, message);
-                case ValidationCase.Success:
-                    break;
-            }
-            if (string.IsNullOrEmpty(message)) {
+            message = validateData("", "", newPass, conPass);
+
+            if (!string.IsNullOrEmpty(message)) {
                 return Message(false, message);
             }
             try {
@@ -106,7 +117,6 @@ namespace Movie_Review.Account {
 
                                 int result = uc.UpdateTable(connection, "users", id, userData);
                                 if (result > -1) {
-                                    message = "Password has been successfully changed";
                                     HttpContext.Current.Session.Clear();
                                     HttpContext.Current.Session["message"] = "Password has been successfully changed. Please login";
                                 }
@@ -137,7 +147,41 @@ namespace Movie_Review.Account {
 
         [WebMethod]
         public static string changeDetails(string name, string email) {
-            return "";
+            name = name.Trim();
+            email = email.Trim();
+            string message = "";
+            UserControl uc = new UserControl();
+
+            message = validateData(name, email, "", "");
+
+            if (!string.IsNullOrEmpty(message)) {
+                return Message(false, message);
+            }
+
+            try {
+                using(SqlConnection connection = new SqlConnection(_connectionString)){
+                    connection.Open();
+                    Dictionary<string, object> userDetails = new Dictionary<string,object>();
+
+                    userDetails.Add("name", name);
+                    userDetails.Add("email", email);
+
+                    int results = uc.UpdateTable(connection,"userInfo",id,userDetails);
+
+                    if (results > -1) {
+                        message = "User details has been successfully updated";
+                    }
+                    else {
+                        message = "No Information was changed, Detail is the same";
+                        throw new Exception();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                uc.LogError(ex.Message + ": " + ex.StackTrace);
+                return Message(false, message);
+            }
+            return Message(true,message);
         }
 
         public static string Message(bool result, string message) {
