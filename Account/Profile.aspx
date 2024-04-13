@@ -7,10 +7,6 @@
         }
     </style>
     <script>
-        var currentName = '<%= displayNameVal.ClientID %>';
-        var currentEmail = '<%= emailVal.ClientID %>';
-        var changeDNameFld = '<%= changeDNameFld.ClientID %>';
-        var changeEmailFld = '<%= changeEmailFld.ClientID %>';
         var curPassFld = '<%= curPassFld.ClientID %>';
         var passwordFieldId = '<%= newPassFld.ClientID %>';
         var conNewPassFld = '<%= conNewPassFld.ClientID %>';
@@ -50,27 +46,27 @@
                 <div id="updateInfoContainer" class="container"><!-- Changing Details -->
                     <div id="updateInfo" class="userInfo">
                         <div class="btnControl">
-                            <button id="changeName" class="btnRegisterUpdate">Change Name</button>
-                            <button id="changeEmail" class="btnRegisterUpdate">Change Email</button>
+                            <button type="button" id="changeName" class="btnRegisterUpdate">Change Name</button>
+                            <button type="button" id="changeEmail" class="btnRegisterUpdate">Change Email</button>
                         </div>
                             <div class="col-ui">
                                 <asp:Label ID="dNameLbl" runat="server" CssClass="lblSignUp" Text="Display Name: " />
-                                <asp:TextBox ID="changeDNameFld" runat="server" CssClass="txtSignUp" Placeholder="New Display Name" disabled="true"/>
+                                <asp:TextBox ID="changeDNameFld" runat="server" CssClass="txtSignUp" Placeholder="New Display Name"  ClientIDMode="Static" disabled="true"/>
                             </div>
                             <div class="col-ui">
                                 <asp:Label ID="emailLbl" runat="server" CssClass="lblSignUp" Text="Email: " />
-                                <asp:TextBox ID="changeEmailFld" runat="server" CssClass="txtSignUp" Placeholder="New Email" disabled="true"/>
+                                <asp:TextBox ID="changeEmailFld" runat="server" CssClass="txtSignUp" Placeholder="New Email" ClientIDMode="Static" disabled="true"/>
                             </div>
                     </div>
                     
                     <div id="updatePass" class="userInfo">
                             <div class="col-ui">
                                 <asp:Label ID="curPassLbl" runat="server" CssClass="lblSignUp" Text="Current Password: " />
-                                <asp:TextBox ID="curPassFld" runat="server" CssClass="txtSignUp" TextMode="Password" />
+                                <asp:TextBox ID="curPassFld" runat="server" CssClass="txtSignUp" TextMode="Password" ClientIDMode="AutoID" />
                             </div>
                             <div class="col-ui">
-                                <asp:Label ID="newPassLbl" runat="server" CssClass="lblSignUp" Text="New Password: " />
-                                <asp:TextBox ID="newPassFld" runat="server" CssClass="txtSignUp" TextMode="Password" />
+                                <asp:Label ID="newPassLbl" runat="server" CssClass="lblSignUp" Text="New Password: "/>
+                                <asp:TextBox ID="newPassFld" runat="server" CssClass="txtSignUp" TextMode="Password" ClientIDMode="AutoID" />
                                 <asp:RequiredFieldValidator ID="passwordRequiredValidator" ControlToValidate="newPassFld" runat="server" ErrorMessage="Password is required." Display="Dynamic" />
                                 <div style="margin-left: 160px" class="passwordCheck" id="passwordComplexityContainer">
                                     <ul>
@@ -83,7 +79,7 @@
                             </div>
                             <div class="col-ui">
                                 <asp:Label ID="conNewPassLbl" runat="server" CssClass="lblSignUp" Text="Confirm Password: "></asp:Label>
-                                <asp:TextBox ID="conNewPassFld" runat="server" CssClass="txtSignUp" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="conNewPassFld" runat="server" CssClass="txtSignUp" TextMode="Password" ClientIDMode="AutoID"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="cpassRequiredValidator" ControlToValidate="conNewPassFld" runat="server" ErrorMessage="Password Confirmation is required." Display="Dynamic"></asp:RequiredFieldValidator>
                                 <div style="margin-left: 160px" class="passwordCheck" id="matchMsgContainer">
                                     <p id="matchMsg" style="font-size: 16px"></p>

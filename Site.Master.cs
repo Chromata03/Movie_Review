@@ -16,6 +16,7 @@ namespace Movie_Review
         private string _antiXsrfTokenValue;
 
         protected void Page_Init(object sender, EventArgs e) {
+            Console.Write("Hello World");
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;

@@ -1964,3 +1964,12 @@ html {
 .comment-section {
     margin-top: 11px;
 }
+
+button[type="button"].disabled {
+    opacity: 0.4;
+}
+
+input[type="text"]:disabled {
+    color:red;
+    font-weight:bolder;
+}

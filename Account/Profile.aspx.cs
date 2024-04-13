@@ -25,8 +25,8 @@ namespace Movie_Review.Account {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
             changeDNameFld.Text = displayNameVal.Text = textInfo.ToTitleCase(Session["name"].ToString());
-            changeEmailFld.Text = usernameVal.Text = Session["username"].ToString();
-            emailVal.Text = Session["email"].ToString();
+            usernameVal.Text = Session["username"].ToString();
+            changeEmailFld.Text = emailVal.Text = Session["email"].ToString();
 
             newPassFld.Attributes["onkeyup"] = "complexity(event);";
             newPassFld.Attributes["onblur"] = "hideCheck(event);";
@@ -54,11 +54,12 @@ namespace Movie_Review.Account {
                 if (!password.Equals(confirmPassword))
                     return ValidationCase.PasswordMatch;
             }
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(email)) {
+            if (!string.IsNullOrEmpty(name)) {
                 if (name.Length < 5)
                     return ValidationCase.NameLength;
-
-                string emailRegEx = @"(^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+            }
+            if (!string.IsNullOrEmpty(email)) {
+                string emailRegEx = @"(^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$)";
                 bool emailIsMatch = Regex.IsMatch(email, emailRegEx);
                 if (!emailIsMatch)
                     return ValidationCase.EmailComplexity;
@@ -170,16 +171,17 @@ namespace Movie_Review.Account {
 
                     if (results > -1) {
                         message = "User details has been successfully updated";
+                        HttpContext.Current.Session["name"] = name;
+                        HttpContext.Current.Session["email"] = email;
                     }
                     else {
-                        message = "No Information was changed, Detail is the same";
+                        message = "No Information was changed, Detail is still the same";
                         throw new Exception();
                     }
                 }
             }
             catch (Exception ex) {
                 uc.LogError(ex.Message + ": " + ex.StackTrace);
-                return Message(false, message);
             }
             return Message(true,message);
         }

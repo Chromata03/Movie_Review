@@ -82,29 +82,47 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#saveUpdate').click(function (event) {
+        event.preventDefault();
         if ($('#updatePass').css("display") == "block") {
             changePassword();
-            return;
         }
         if ($('#updateInfo').css("display") == "block") {
             var data = {};
 
-            $('#changeName').click(function (event) {
-                changeDNameFld.prop("disabled", "false");
-            });
-            $('#changeEmail').click(function (event) {
-                changeEmailFld.prop("disabled", "false");
-            });
-
-            if ($('#' + changeDNameFld).val() !== '') {
-                data.name = $('#' + changeDNameFld).val();
+            if ($('#changeDNameFld').val() !== '') {
+                data.name = $('#changeDNameFld').val();
             }
-            if ($('#' + changeEmailFld).val() !== '') {
-                data.email = $('#' + changeEmailFld).val();
+            if ($('#changeEmailFld').val() !== '') {
+                data.email = $('#changeEmailFld').val();
             }
-
             changeDetails(data);
-            return;
+        }
+    });
+});
+
+$(document).ready(function () {
+
+    var nameFld = $('#changeDNameFld');
+    var emailFld = $('#changeEmailFld');
+
+    $('#changeName').click(function (event) {
+        if (nameFld.is(':disabled')) {
+            nameFld.prop("disabled", false);
+            $('#changeName').addClass('disabled');
+        }
+        else {
+            nameFld.prop("disabled", true);
+            $('#changeName').removeClass('disabled');
+        }
+    });
+    $('#changeEmail').click(function (event) {
+        if (emailFld.is(':disabled')) {
+            emailFld.prop("disabled", false);
+            $('#changeEmail').addClass('disabled');
+        }
+        else {
+            emailFld.prop("disabled", true);
+            $('#changeEmail').removeClass('disabled');
         }
     });
 });
@@ -113,9 +131,9 @@ function changePassword() {
     event.preventDefault();
 
     var dataToSave = {
-        curPass: $('#' + curPassFld).val(),
-        newPass: $('#' + passwordFieldId).val(),
-        conPass: $('#' + conNewPassFld).val()
+        curPass: $('#curPassFld').val(),
+        newPass: $('#newPassFld').val(),
+        conPass: $('#conNewPassFld').val()
     };
 
     $.ajax({
@@ -154,10 +172,17 @@ function changeDetails(data) {
         dataType: "json",
         success: function (response) {
             var responseData = JSON.parse(response.d);
-            $('#headerContainer').attr("visible", "true");
-            $('#headerMsg').text(responseData.message);
+            if (responseData.success) {
+                alert(responseData.message);
+                window.location.href = "Profile.aspx";
+            }
+            else {
+                $('#headerContainer').attr("visible", "true");
+                $('#headerMsg').text(responseData.message);
+            }
         },
         error: function (xhr, status, error) {
+            document.getElementById('headerMsg').innerHTML = xhr.responseText;
             console.log(xhr.responseText);
         }
     });
